@@ -1,237 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zombie Gnomez - The Crypt of GNOMEZ</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie Gnomez - The Crypt of GNOMEZ</title>
+
+  <!-- Basic SEO Meta Tags -->
+  <meta name="description" content="Summon your undead gnome in the Crypt of GNOMEZ. Collect tokens, join the undead horde, and dominate the crypt!">
+  <meta name="keywords" content="Zombie, Gnome, NFT, Solana, Token, Crypto, GNOMEZ, undead">
+
+  <style>
     body {
-        background: #000;
-        color: #39ff14;
-        font-family: monospace;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        position: relative;
+      /* Subtle radial gradient background */
+      background: radial-gradient(circle at center, #000 0%, #001900 100%);
+      color: #39ff14;
+      font-family: monospace;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
     }
 
     .container {
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 20px;
-        position: relative;
-        z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Glitch effect for main title */
+    @keyframes glitch1 {
+      0% { clip: rect(24px, 9999px, 44px, 0); transform: skew(0.5deg); }
+      5% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.7deg); }
+      10% { clip: rect(45px, 9999px, 80px, 0); transform: skew(0.3deg); }
+      15% { clip: rect(90px, 9999px, 130px, 0); transform: skew(0.8deg); }
+      20% { clip: rect(30px, 9999px, 60px, 0); transform: skew(0.2deg); }
+      25% { clip: rect(10px, 9999px, 40px, 0); transform: skew(0.6deg); }
+      30% { clip: rect(70px, 9999px, 110px, 0); transform: skew(0.4deg); }
+      35% { clip: rect(50px, 9999px, 70px, 0); transform: skew(0.9deg); }
+      40% { clip: rect(20px, 9999px, 50px, 0); transform: skew(0.3deg); }
+      45% { clip: rect(60px, 9999px, 90px, 0); transform: skew(0.5deg); }
+      50% { clip: rect(40px, 9999px, 70px, 0); transform: skew(0.2deg); }
+      55% { clip: rect(80px, 9999px, 120px, 0); transform: skew(0.6deg); }
+      60% { clip: rect(35px, 9999px, 70px, 0); transform: skew(0.1deg); }
+      65% { clip: rect(10px, 9999px, 40px, 0); transform: skew(0.4deg); }
+      70% { clip: rect(55px, 9999px, 85px, 0); transform: skew(0.7deg); }
+      75% { clip: rect(25px, 9999px, 55px, 0); transform: skew(0.5deg); }
+      80% { clip: rect(75px, 9999px, 120px, 0); transform: skew(0.8deg); }
+      85% { clip: rect(45px, 9999px, 65px, 0); transform: skew(0.3deg); }
+      90% { clip: rect(20px, 9999px, 50px, 0); transform: skew(0.6deg); }
+      95% { clip: rect(60px, 9999px, 100px, 0); transform: skew(0.2deg); }
+      100% { clip: rect(30px, 9999px, 75px, 0); transform: skew(0.4deg); }
+    }
+
+    @keyframes glitch2 {
+      0% { clip: rect(20px, 9999px, 80px, 0); transform: skew(0.7deg); }
+      5% { clip: rect(60px, 9999px, 105px, 0); transform: skew(0.3deg); }
+      10% { clip: rect(10px, 9999px, 40px, 0); transform: skew(0.5deg); }
+      15% { clip: rect(45px, 9999px, 80px, 0); transform: skew(0.4deg); }
+      20% { clip: rect(75px, 9999px, 110px, 0); transform: skew(0.6deg); }
+      25% { clip: rect(30px, 9999px, 60px, 0); transform: skew(0.8deg); }
+      30% { clip: rect(50px, 9999px, 90px, 0); transform: skew(0.2deg); }
+      35% { clip: rect(70px, 9999px, 120px, 0); transform: skew(0.8deg); }
+      40% { clip: rect(25px, 9999px, 55px, 0); transform: skew(0.3deg); }
+      45% { clip: rect(10px, 9999px, 40px, 0); transform: skew(0.6deg); }
+      50% { clip: rect(60px, 9999px, 100px, 0); transform: skew(0.1deg); }
+      55% { clip: rect(40px, 9999px, 65px, 0); transform: skew(0.4deg); }
+      60% { clip: rect(80px, 9999px, 120px, 0); transform: skew(0.7deg); }
+      65% { clip: rect(50px, 9999px, 90px, 0); transform: skew(0.3deg); }
+      70% { clip: rect(20px, 9999px, 60px, 0); transform: skew(0.6deg); }
+      75% { clip: rect(10px, 9999px, 40px, 0); transform: skew(0.9deg); }
+      80% { clip: rect(70px, 9999px, 115px, 0); transform: skew(0.4deg); }
+      85% { clip: rect(30px, 9999px, 70px, 0); transform: skew(0.6deg); }
+      90% { clip: rect(45px, 9999px, 85px, 0); transform: skew(0.2deg); }
+      95% { clip: rect(15px, 9999px, 50px, 0); transform: skew(0.7deg); }
+      100% { clip: rect(60px, 9999px, 100px, 0); transform: skew(0.3deg); }
     }
 
     .box {
-        border: 1px solid #39ff14;
-        padding: 15px;
-        margin-bottom: 20px;
-        position: relative;
-        animation: fadeIn 1s ease;
+      border: 1px solid #39ff14;
+      padding: 15px;
+      margin-bottom: 20px;
+      position: relative;
+      animation: fadeIn 1s ease;
     }
 
     .box::after {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        border: 1px dashed #39ff14;
-        pointer-events: none;
-        opacity: 0.6;
-        animation: flickerBorder 2s linear infinite alternate;
+      content: "";
+      position: absolute;
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0;
+      border: 1px dashed #39ff14;
+      pointer-events: none;
+      opacity: 0.6;
+      animation: flickerBorder 2s linear infinite alternate;
     }
 
     @keyframes flickerBorder {
-        0% { opacity: 0.6; }
-        100% { opacity: 1; }
+      0%   { opacity: 0.6; }
+      100% { opacity: 1;   }
     }
 
     @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
     .hero {
-        margin-top: 50px;
-        text-align: center;
+      margin-top: 50px;
+      text-align: center;
+      position: relative;
     }
 
-    .hero h1 { font-size: 1.8em; }
-    .hero p { font-size: 0.95em; }
-    .hero .links { margin-top: 10px; }
+    .hero h1 {
+      font-size: 1.8em;
+      position: relative;
+      display: inline-block;
+      /* Glitch containers */
+    }
+    .hero h1::before,
+    .hero h1::after {
+      content: "Welcome to The Crypt of GNOMEZ";
+      position: absolute;
+      left: 0;
+      color: #39ff14;
+      overflow: hidden;
+      top: 0;
+    }
+    .hero h1::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00c1;
+      animation: glitch1 2.5s infinite linear alternate-reverse;
+    }
+    .hero h1::after {
+      left: -2px;
+      text-shadow: -2px 0 #00fff9;
+      animation: glitch2 2.5s infinite linear alternate-reverse;
+    }
+
+    .hero p {
+      font-size: 0.95em;
+      max-width: 500px;
+      margin: 10px auto 0 auto;
+    }
 
     .generator { text-align: center; }
-    .generator h2 { font-size: 1.2em; }
+    .generator h2 { font-size: 1.2em; margin-bottom: 10px; }
     .generator input {
-        background: #000;
-        color: #39ff14;
-        border: 1px solid #39ff14;
-        padding: 5px;
-        width: 60%;
-        font-family: monospace;
+      background: #000;
+      color: #39ff14;
+      border: 1px solid #39ff14;
+      padding: 5px;
+      width: 60%;
+      font-family: monospace;
     }
     .generator input:focus {
-        outline: none;
-        border-color: #0f0;
+      outline: none;
+      border-color: #0f0;
     }
     .generator button {
-        background: #000;
-        color: #39ff14;
-        border: 1px solid #39ff14;
-        padding: 5px 10px;
-        cursor: pointer;
-        font-family: monospace;
-        margin-left: 5px;
-        transition: background 0.2s;
+      background: #000;
+      color: #39ff14;
+      border: 1px solid #39ff14;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: monospace;
+      margin-left: 5px;
+      transition: background 0.2s;
     }
     .generator button:hover { background: #001900; }
 
     .loading-container {
-        display: none;
-        text-align: center;
-        margin: 20px 0;
+      display: none;
+      text-align: center;
+      margin: 20px 0;
     }
     .loading-text { margin-top: 10px; font-size: 0.9em; }
     .spinner {
-        width: 20px;
-        height: 20px;
-        border: 3px solid #000;
-        border-top: 3px solid #39ff14;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #000;
+      border-top: 3px solid #39ff14;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
     }
 
     @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .gnome-showcase { text-align: center; }
     .gnome-showcase h2 { font-size: 1.2em; }
+
     .gnome {
-        display: inline-block;
-        background: #000;
-        border: 1px solid #39ff14;
-        padding: 10px;
-        text-align: left;
-        width: 280px;
-        white-space: pre;
-        margin: 20px 10px;
-        vertical-align: top;
-        animation: fadeIn 1s ease;
-        position: relative;
+      display: inline-block;
+      background: #000;
+      border: 1px solid #39ff14;
+      padding: 10px;
+      text-align: left;
+      width: 280px;
+      white-space: pre;
+      margin: 20px 10px;
+      vertical-align: top;
+      animation: fadeIn 1s ease;
+      position: relative;
     }
 
     .gnome p {
-        margin: 5px 0;
-        line-height: 1.2;
+      margin: 5px 0;
+      line-height: 1.2;
     }
 
     .buy-btn {
-        background: #000;
-        color: #39ff14;
-        border: 1px solid #39ff14;
-        padding: 10px 15px;
-        font-family: monospace;
-        font-size: 1em;
-        cursor: pointer;
-        transition: background 0.2s;
-        display: block;
-        margin: 0 auto;
+      background: #000;
+      color: #39ff14;
+      border: 1px solid #39ff14;
+      padding: 10px 15px;
+      font-family: monospace;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: block;
+      margin: 0 auto;
     }
     .buy-btn:hover {
-        background: #001900;
+      background: #001900;
     }
 
     .moving-text {
-        position: absolute;
-        top: 0;
-        left: -100%;
-        white-space: nowrap;
-        font-size: 1em;
-        color: #39ff14;
-        animation: moveText 15s linear infinite;
+      position: absolute;
+      top: 0;
+      left: -100%;
+      white-space: nowrap;
+      font-size: 1em;
+      color: #39ff14;
+      animation: moveText 15s linear infinite;
     }
 
     @keyframes moveText {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(200%); }
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(200%); }
     }
 
     footer {
-        text-align: center;
-        font-size: 0.8em;
-        margin: 20px 0;
+      text-align: center;
+      font-size: 0.8em;
+      margin: 20px 0;
     }
-</style>
+  </style>
 </head>
 <body>
-<div class="moving-text">Step 1: Enter your wallet address | Step 2: Click Summon | Step 3: Meet your Zombie Gnome!</div>
-<div class="container">
+  <div class="moving-text">Step 1: Enter your wallet address | Step 2: Click Summon | Step 3: Meet your Zombie Gnome!</div>
+  <div class="container">
+    
+    <!-- Hero Section -->
     <div class="hero box">
-        <h1>Welcome to The Crypt of GNOMEZ</h1>
-        <p>Resurrect your Zombie Gnome and join the undead horde. Collect GNOMEZ tokens to empower your minions and dominate the crypt!</p>
+      <h1>Welcome to The Crypt of GNOMEZ</h1>
+      <p>Resurrect your Zombie Gnome and join the undead horde. Collect GNOMEZ tokens to empower your minions and dominate the crypt!</p>
     </div>
 
+    <!-- Generator Section -->
     <div class="generator box">
-        <h2>Summon Your Zombie Gnome</h2>
-        <input type="text" id="wallet-address" placeholder="Enter your Solana wallet address...">
-        <button id="generate-button">Summon</button>
+      <h2>Summon Your Zombie Gnome</h2>
+      <input type="text" id="wallet-address" placeholder="Enter your Solana wallet address...">
+      <button id="generate-button">Summon</button>
     </div>
 
+    <!-- Loading Indicator -->
     <div class="loading-container" id="loading-container">
-        <div class="spinner"></div>
-        <p class="loading-text">Raising the undead...</p>
+      <div class="spinner"></div>
+      <p class="loading-text">Raising the undead...</p>
     </div>
 
+    <!-- Gnome Showcase -->
     <div class="gnome-showcase box" id="gnome-showcase">
-        <h2>Your Zombie Gnome</h2>
-        <!-- Zombie Gnome appears here -->
+      <h2>Your Zombie Gnome</h2>
+      <!-- Zombie Gnome appears here -->
     </div>
 
+    <!-- Token Section -->
     <div class="box">
-        <h2>Get GNOMEZ Tokens</h2>
-        <p>Empower your Zombie Gnomes and unlock their true potential. Buy GNOMEZ tokens to stake and rise through the crypt ranks!</p>
-        <button class="buy-btn" onclick="buyGnomez()">Buy GNOMEZ Tokens</button>
+      <h2>Get GNOMEZ Tokens</h2>
+      <p>Empower your Zombie Gnomes and unlock their true potential. Buy GNOMEZ tokens to stake and rise through the crypt ranks!</p>
+      <button class="buy-btn" onclick="buyGnomez()">Buy GNOMEZ Tokens</button>
     </div>
 
     <footer>
-        © 2024 Zombie Gnomez | The Crypt of GNOMEZ
+      © 2024 Zombie Gnomez | The Crypt of GNOMEZ
     </footer>
-</div>
+  </div>
 
-<script>
-(function() {
-    const walletInput = document.getElementById('wallet-address');
-    const generateButton = document.getElementById('generate-button');
-    const gnomeShowcase = document.getElementById('gnome-showcase');
-    const loadingContainer = document.getElementById('loading-container');
+  <script>
+    (function() {
+      const walletInput = document.getElementById('wallet-address');
+      const generateButton = document.getElementById('generate-button');
+      const gnomeShowcase = document.getElementById('gnome-showcase');
+      const loadingContainer = document.getElementById('loading-container');
 
-    const TRAITS = {
+      const TRAITS = {
         hats: ["Rotting Crown", "Spiderweb Cap", "Bone Helmet", "Torn Hood"],
         eyes: ["Glowing Red", "Hollow Sockets", "Oozing Green", "Empty Void"],
         skin: ["Decayed Flesh", "Bone Exposed", "Pale Grey", "Rotten Green"],
         accessories: ["Rusty Shovel", "Skull Necklace", "Broken Lantern", "Zombie Cat"],
         clans: ["Rotrot", "Dreadshroom", "Graveleaf", "Cryptthorn"]
-    };
+      };
 
-    function validateWalletAddress(address) {
+      function validateWalletAddress(address) {
         const solanaAddressRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
         return solanaAddressRegex.test(address);
-    }
+      }
 
-    function hashAddress(address) {
+      function hashAddress(address) {
         let hash = 0;
         for (let i = 0; i < address.length; i++) {
-            const char = address.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash; // Convert to 32-bit integer
+          const char = address.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash; // Convert to 32-bit integer
         }
         return Math.abs(hash);
-    }
+      }
 
-    function generateZombieGnome(hash) {
+      function generateZombieGnome(hash) {
         const hat = TRAITS.hats[hash % TRAITS.hats.length];
         const eyes = TRAITS.eyes[(hash >> 2) % TRAITS.eyes.length];
         const skin = TRAITS.skin[(hash >> 4) % TRAITS.skin.length];
@@ -239,65 +333,71 @@
         const clan = TRAITS.clans[(hash >> 8) % TRAITS.clans.length];
         const charmLevel = (hash % 100) + 1;
 
-        const asciiArt = `
-(  ***  )
-( o   o )
-(   C   )
-(  ~~~  )
-(  [Z]  )
-(       )
-( \---/ )
-`;
+        // More detailed ASCII art
+        const asciiArt = String.raw`
+      (     )
+      ( O O )   <-- ${eyes} eyes
+      (  ~  )   <-- ${skin} skin
+  ____/  ^  \____
+ (  ___  GNOMEZ  )
+  \__|  ${hat}  |__
+     |________|
+       |    |
+       | ${accessory} |
+      /      \
+     /________\
+    `;
 
         return {
-            hat,
-            eyes,
-            skin,
-            accessory,
-            clan,
-            charmLevel,
-            asciiArt
+          hat,
+          eyes,
+          skin,
+          accessory,
+          clan,
+          charmLevel,
+          asciiArt
         };
-    }
+      }
 
-    function displayZombieGnome(gnome) {
+      function displayZombieGnome(gnome) {
         gnomeShowcase.innerHTML = `
-            <div class="gnome">
-                <pre>${gnome.asciiArt}</pre>
-                <p><strong>Clan:</strong> ${gnome.clan}</p>
-                <p><strong>Hat:</strong> ${gnome.hat}</p>
-                <p><strong>Eyes:</strong> ${gnome.eyes}</p>
-                <p><strong>Skin:</strong> ${gnome.skin}</p>
-                <p><strong>Accessory:</strong> ${gnome.accessory}</p>
-                <p><strong>Charm Level:</strong> ${gnome.charmLevel}/100</p>
-            </div>
+          <h2>Your Zombie Gnome</h2>
+          <div class="gnome">
+            <pre>${gnome.asciiArt}</pre>
+            <p><strong>Clan:</strong> ${gnome.clan}</p>
+            <p><strong>Hat:</strong> ${gnome.hat}</p>
+            <p><strong>Eyes:</strong> ${gnome.eyes}</p>
+            <p><strong>Skin:</strong> ${gnome.skin}</p>
+            <p><strong>Accessory:</strong> ${gnome.accessory}</p>
+            <p><strong>Charm Level:</strong> ${gnome.charmLevel}/100</p>
+          </div>
         `;
-    }
+      }
 
-    generateButton.addEventListener('click', () => {
+      generateButton.addEventListener('click', () => {
         const walletAddress = walletInput.value.trim();
 
         if (!validateWalletAddress(walletAddress)) {
-            alert('Please enter a valid Solana wallet address!');
-            return;
+          alert('Please enter a valid Solana wallet address!');
+          return;
         }
 
         loadingContainer.style.display = 'block';
         gnomeShowcase.innerHTML = '<h2>Your Zombie Gnome</h2>';
 
         setTimeout(() => {
-            const hash = hashAddress(walletAddress);
-            const gnome = generateZombieGnome(hash);
+          const hash = hashAddress(walletAddress);
+          const gnome = generateZombieGnome(hash);
 
-            loadingContainer.style.display = 'none';
-            displayZombieGnome(gnome);
+          loadingContainer.style.display = 'none';
+          displayZombieGnome(gnome);
         }, 2000);
-    });
-})();
+      });
+    })();
 
-function buyGnomez() {
-    window.open('https://dex.solana.com/', '_blank'); // Replace with actual DEX link for GNOMEZ
-}
-</script>
+    function buyGnomez() {
+      window.open('https://dex.solana.com/', '_blank'); // Replace with actual DEX link for GNOMEZ
+    }
+  </script>
 </body>
 </html>
