@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zombie Gnomez - The Crypt of GNOMEZ</title>
+<style>
+    body {
+        background: #000;
+        color: #39ff14;
+        font-family: monospace;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .box {
+        border: 1px solid #39ff14;
+        padding: 15px;
+        margin-bottom: 20px;
+        position: relative;
+        animation: fadeIn 1s ease;
+    }
+
+    .box::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border: 1px dashed #39ff14;
+        pointer-events: none;
+        opacity: 0.6;
+        animation: flickerBorder 2s linear infinite alternate;
+    }
+
+    @keyframes flickerBorder {
+        0% { opacity: 0.6; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .hero {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .hero h1 { font-size: 1.8em; }
+    .hero p { font-size: 0.95em; }
+    .hero .links { margin-top: 10px; }
+
+    .generator { text-align: center; }
+    .generator h2 { font-size: 1.2em; }
+    .generator input {
+        background: #000;
+        color: #39ff14;
+        border: 1px solid #39ff14;
+        padding: 5px;
+        width: 60%;
+        font-family: monospace;
+    }
+    .generator input:focus {
+        outline: none;
+        border-color: #0f0;
+    }
+    .generator button {
+        background: #000;
+        color: #39ff14;
+        border: 1px solid #39ff14;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-family: monospace;
+        margin-left: 5px;
+        transition: background 0.2s;
+    }
+    .generator button:hover { background: #001900; }
+
+    .loading-container {
+        display: none;
+        text-align: center;
+        margin: 20px 0;
+    }
+    .loading-text { margin-top: 10px; font-size: 0.9em; }
+    .spinner {
+        width: 20px;
+        height: 20px;
+        border: 3px solid #000;
+        border-top: 3px solid #39ff14;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .gnome-showcase { text-align: center; }
+    .gnome-showcase h2 { font-size: 1.2em; }
+    .gnome {
+        display: inline-block;
+        background: #000;
+        border: 1px solid #39ff14;
+        padding: 10px;
+        text-align: left;
+        width: 280px;
+        white-space: pre;
+        margin: 20px 10px;
+        vertical-align: top;
+        animation: fadeIn 1s ease;
+        position: relative;
+    }
+
+    .gnome p {
+        margin: 5px 0;
+        line-height: 1.2;
+    }
+
+    .buy-btn {
+        background: #000;
+        color: #39ff14;
+        border: 1px solid #39ff14;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s;
+        display: block;
+        margin: 0 auto;
+    }
+    .buy-btn:hover {
+        background: #001900;
+    }
+
+    .moving-text {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        white-space: nowrap;
+        font-size: 1em;
+        color: #39ff14;
+        animation: moveText 15s linear infinite;
+    }
+
+    @keyframes moveText {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(200%); }
+    }
+
+    footer {
+        text-align: center;
+        font-size: 0.8em;
+        margin: 20px 0;
+    }
+</style>
+</head>
+<body>
+<div class="moving-text">Step 1: Enter your wallet address | Step 2: Click Summon | Step 3: Meet your Zombie Gnome!</div>
+<div class="container">
+    <div class="hero box">
+        <h1>Welcome to The Crypt of GNOMEZ</h1>
+        <p>Resurrect your Zombie Gnome and join the undead horde. Collect GNOMEZ tokens to empower your minions and dominate the crypt!</p>
+    </div>
+
+    <div class="generator box">
+        <h2>Summon Your Zombie Gnome</h2>
+        <input type="text" id="wallet-address" placeholder="Enter your Solana wallet address...">
+        <button id="generate-button">Summon</button>
+    </div>
+
+    <div class="loading-container" id="loading-container">
+        <div class="spinner"></div>
+        <p class="loading-text">Raising the undead...</p>
+    </div>
+
+    <div class="gnome-showcase box" id="gnome-showcase">
+        <h2>Your Zombie Gnome</h2>
+        <!-- Zombie Gnome appears here -->
+    </div>
+
+    <div class="box">
+        <h2>Get GNOMEZ Tokens</h2>
+        <p>Empower your Zombie Gnomes and unlock their true potential. Buy GNOMEZ tokens to stake and rise through the crypt ranks!</p>
+        <button class="buy-btn" onclick="buyGnomez()">Buy GNOMEZ Tokens</button>
+    </div>
+
+    <footer>
+        © 2024 Zombie Gnomez | The Crypt of GNOMEZ
+    </footer>
+</div>
+
+<script>
+(function() {
+    const walletInput = document.getElementById('wallet-address');
+    const generateButton = document.getElementById('generate-button');
+    const gnomeShowcase = document.getElementById('gnome-showcase');
+    const loadingContainer = document.getElementById('loading-container');
+
+    const TRAITS = {
+        hats: ["Rotting Crown", "Spiderweb Cap", "Bone Helmet", "Torn Hood"],
+        eyes: ["Glowing Red", "Hollow Sockets", "Oozing Green", "Empty Void"],
+        skin: ["Decayed Flesh", "Bone Exposed", "Pale Grey", "Rotten Green"],
+        accessories: ["Rusty Shovel", "Skull Necklace", "Broken Lantern", "Zombie Cat"],
+        clans: ["Rotrot", "Dreadshroom", "Graveleaf", "Cryptthorn"]
+    };
+
+    function validateWalletAddress(address) {
+        const solanaAddressRegex = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+        return solanaAddressRegex.test(address);
+    }
+
+    function hashAddress(address) {
+        let hash = 0;
+        for (let i = 0; i < address.length; i++) {
+            const char = address.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32-bit integer
+        }
+        return Math.abs(hash);
+    }
+
+    function generateZombieGnome(hash) {
+        const hat = TRAITS.hats[hash % TRAITS.hats.length];
+        const eyes = TRAITS.eyes[(hash >> 2) % TRAITS.eyes.length];
+        const skin = TRAITS.skin[(hash >> 4) % TRAITS.skin.length];
+        const accessory = TRAITS.accessories[(hash >> 6) % TRAITS.accessories.length];
+        const clan = TRAITS.clans[(hash >> 8) % TRAITS.clans.length];
+        const charmLevel = (hash % 100) + 1;
+
+        const asciiArt = `
+(  ***  )
+( o   o )
+(   C   )
+(  ~~~  )
+(  [Z]  )
+(       )
+( \---/ )
+`;
+
+        return {
+            hat,
+            eyes,
+            skin,
+            accessory,
+            clan,
+            charmLevel,
+            asciiArt
+        };
+    }
+
+    function displayZombieGnome(gnome) {
+        gnomeShowcase.innerHTML = `
+            <div class="gnome">
+                <pre>${gnome.asciiArt}</pre>
+                <p><strong>Clan:</strong> ${gnome.clan}</p>
+                <p><strong>Hat:</strong> ${gnome.hat}</p>
+                <p><strong>Eyes:</strong> ${gnome.eyes}</p>
+                <p><strong>Skin:</strong> ${gnome.skin}</p>
+                <p><strong>Accessory:</strong> ${gnome.accessory}</p>
+                <p><strong>Charm Level:</strong> ${gnome.charmLevel}/100</p>
+            </div>
+        `;
+    }
+
+    generateButton.addEventListener('click', () => {
+        const walletAddress = walletInput.value.trim();
+
+        if (!validateWalletAddress(walletAddress)) {
+            alert('Please enter a valid Solana wallet address!');
+            return;
+        }
+
+        loadingContainer.style.display = 'block';
+        gnomeShowcase.innerHTML = '<h2>Your Zombie Gnome</h2>';
+
+        setTimeout(() => {
+            const hash = hashAddress(walletAddress);
+            const gnome = generateZombieGnome(hash);
+
+            loadingContainer.style.display = 'none';
+            displayZombieGnome(gnome);
+        }, 2000);
+    });
+})();
+
+function buyGnomez() {
+    window.open('https://dex.solana.com/', '_blank'); // Replace with actual DEX link for GNOMEZ
+}
+</script>
+</body>
+</html>
